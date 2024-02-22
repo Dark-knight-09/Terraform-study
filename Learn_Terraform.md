@@ -19,11 +19,11 @@ steps to run .tf file:
 2. data: it is used to fetch the data from the provider.
 3. output: it is used to display the output of the terraform file in the terminal.
 4. provider: it is used to define the provider and its configuration.
-5. variable: it is used to define the variable and its type.
-6. locals:
+5. variable: it is used to define the variable and its type.(can be overriden by different methods)
+6. locals: it is used to define the local variable in the terraform file. (can't be overriden)
 7. module:
-8. terraform:
-9. provisioner:
+8. terraform: it is used to define the terraform version and its provider configuration.
+9. provider: it is used to define the provider and its configuration like access key or tokens.
 
 
 # priority of variable definition:
@@ -53,9 +53,21 @@ Meta-arguments in Terraform are used to control the behavior of resources beyond
 2. `count`: This argument is used to create multiple similar instances of a resource or a module.
 3. `for_each`: This argument is used to create multiple bit differenct instances of a resource or a module, similar to `count`, but it uses a map or a set of strings to create the instances.
 4. `provider`: This argument is used to specify a custom or alternative provider configuration for a resource.
-5. `lifecycle`: This block is used to control certain behaviors of the resource during create, update, and delete operations, such as preventing the destruction of a resource (`prevent_destroy`), creating before destroying during replacement (`create_before_destroy`), and ignoring changes to certain attributes (`ignore_changes`).
+5. `lifecycle`: This block is used to control certain behaviors of the resource during create, update, and delete operations, 
+such as preventing the destruction of a resource (`prevent_destroy`) 
+creating before destroying during replacement (`create_before_destroy`) 
+ignoring changes to certain attributes (`ignore_changes`)
 
 
+types of variable:
+1. string : "string name"
+2. number: 123 
+3. bool: true/false
+4. list: ["a", "b", "c"] ; list("a", "b", "c")
+5. map: {key1 = "value1", key2 = "value2"} ; map(string)
+6. object: {} ; object({key1 = "value1", key2 = "value2"})
+7. tuple: ["a", "b", "c"] ; tuple("a", "b", "c")
+8. set: ["a", "b", "c"] ; set("a", "b", "c")
 
 
 
