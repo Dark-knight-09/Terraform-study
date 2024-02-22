@@ -99,3 +99,37 @@ resource "aws_security_group" "example" {
         }
     }
 }
+
+// provisioner execution on aws_instance
+resource "aws_instance" "example" {
+    ami           = "ami-0c94855ba95c574c8"  # Update this with your AMI ID
+    instance_type = "t2.micro"
+
+    key_name = aws_key_pair.example.key_name
+
+    provisioner "remote-exec" {
+        inline = [
+            "sudo apt-get update",
+            "sudo apt-get install -y mysql-server",
+        ]
+    }
+
+    provisioner "file" {
+        source      = "localfile.txt"
+        destination = "/tmp/remote_file.txt"
+    }
+
+    connection {
+        type        = "ssh"
+        user        = "ubuntu"
+        private_key = file("~/.ssh/id_rsa")
+        host        = self.public_ip
+    }
+}
+
+resource "aws_key_pair" "example" {
+    key_name   = "example"
+    public_key = file("~/.ssh/id_rsa.pub")
+}
+
+

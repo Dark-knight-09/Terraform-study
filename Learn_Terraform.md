@@ -25,6 +25,7 @@ steps to run .tf file:
 8. terraform: it is used to define the terraform version and its provider configuration.
 9. provider: it is used to define the provider and its configuration like access key or tokens.
 10. Dynamic: it is used inside the resource block to create multiple resources with different configuration.
+11. provisioner: it is used to run the script on the resource after the resource is created. //don't use it, use cloud-init or user-data instead.
 
 
 # priority of variable definition:
@@ -72,8 +73,13 @@ depending on the variable value type the variable type is defined.
 8. set: ["a", "b", "c"] ; set("a", "b", "c")
 
 
-
-
+to ssh connection to the instance using terraform:
+connection {
+    type    = "ssh"
+    user   = "ubuntu"
+    private_key = file("~/.ssh/id_rsa")
+    host = self.public_ip
+}
 
 
 
