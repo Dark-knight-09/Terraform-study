@@ -24,6 +24,7 @@ steps to run .tf file:
 7. module:
 8. terraform: it is used to define the terraform version and its provider configuration.
 9. provider: it is used to define the provider and its configuration like access key or tokens.
+10. Dynamic: it is used inside the resource block to create multiple resources with different configuration.
 
 
 # priority of variable definition:
@@ -59,14 +60,15 @@ creating before destroying during replacement (`create_before_destroy`)
 ignoring changes to certain attributes (`ignore_changes`)
 
 
-types of variable:
-1. string : "string name"
+depending on the variable value type the variable type is defined.
+# types of variable:
+1. string : "string name" 
 2. number: 123 
 3. bool: true/false
-4. list: ["a", "b", "c"] ; list("a", "b", "c")
-5. map: {key1 = "value1", key2 = "value2"} ; map(string)
-6. object: {} ; object({key1 = "value1", key2 = "value2"})
-7. tuple: ["a", "b", "c"] ; tuple("a", "b", "c")
+4. list: ["a", "b", "c"] ; list("a", "b", "c") // all elements should be of same type
+5. map: {key1 = "value1", key2 = "value2"} ; map(string) // all elements should be of same type
+6. object: {key1 = "value1", key2="value2"} ; object({key1 = string, key2 = number}) // all elements can have different type
+7. tuple: ["a", 2 , "c"] ; tuple([string, number, bool])
 8. set: ["a", "b", "c"] ; set("a", "b", "c")
 
 
