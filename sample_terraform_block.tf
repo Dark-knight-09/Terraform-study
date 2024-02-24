@@ -133,3 +133,14 @@ resource "aws_key_pair" "example" {
 }
 
 
+//modeule block
+module "vpc" {
+    source = "terraform-aws-modules/vpc/aws"
+    version = "2.66.0"
+    name = "my-vpc"
+    cidr = "10.0.0.0/16"
+}
+
+output "vpc_id" {
+    value = module.vpc.vpc_id
+}

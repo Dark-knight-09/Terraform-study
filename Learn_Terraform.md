@@ -28,24 +28,17 @@ steps to run .tf file:
 11. provisioner: it is used to run the script on the resource after the resource is created. //don't use it, use cloud-init or user-data instead.
 
 
-# priority of variable definition:
-1. command line arguments [terraform apply -var 'name=value' or terraform apply -var-file=example.tfvars]
-2. terraform.tfvars file // variable file declared in the same directory
-3. any .auto.tfvars or .auto.tfvars.json files 
-4. Environment variables [export TF_VAR_name=value]
-5. default value in the variable block
-
 
 # Terraform command:
 - terraform apply: execute the plan
 - terraform validate:  validate the syntax of .tf file or debugger
 - terraform fmt : make .tf file prettier
 - terraform show : shows current state of terraform in the directory
-- terraform  provider: shows the provider used in .tf file
+- terraform  providers: shows the provider used in .tf file
 - terraform output  <variable name> : prints all output variable or specified  output <variable name>.
 - terraform refresh : updates the .tf according to infrastructure.
 - terraform destory: destories all the resource created using current terraform file.[ be carefull ]
-- 
+- terraform workspace: used to create, delete, list, select the workspace.
 
 
 # meta-arguments in terraform:
@@ -60,8 +53,15 @@ such as preventing the destruction of a resource (`prevent_destroy`)
 creating before destroying during replacement (`create_before_destroy`) 
 ignoring changes to certain attributes (`ignore_changes`)
 
+# workspace:
+- Terraform workspaces allow you to manage multiple instances of the same infrastructure in a single configuration file.
+- terraform workspace new <workspace name> : create new workspace
+- terraform workspace list : list all the workspace
+- terraform workspace select <workspace name> : select the workspace
+- terraform workspace delete <workspace name> : delete the workspace
 
-depending on the variable value type the variable type is defined.
+# variable:
+>> note: depending on the variable value type the variable type is defined.
 # types of variable:
 1. string : "string name" 
 2. number: 123 
@@ -72,8 +72,19 @@ depending on the variable value type the variable type is defined.
 7. tuple: ["a", 2 , "c"] ; tuple([string, number, bool])
 8. set: ["a", "b", "c"] ; set("a", "b", "c")
 
+# variable inclution:
+by default terraform automatically includes the .tfvars, .tfvars.json, .terraform.tfvars.json, *.auto.tfvars, *.auto.tfvars.json file in the directory. 
+but to include variable file name with *.tfvars in the execution use -var-file=example.tfvars in the terraform apply command.
+- terraform apply -var-file=example.tfvars
 
-to ssh connection to the instance using terraform:
+# priority of variable definition:
+1. command line arguments [terraform apply -var 'name=value' or terraform apply -var-file=example.tfvars]
+2. terraform.tfvars file // variable file declared in the same directory
+3. any .auto.tfvars or .auto.tfvars.json files 
+4. Environment variables [export TF_VAR_name=value]
+5. default value in the variable block
+
+// to ssh connection to the instance using terraform:
 connection {
     type    = "ssh"
     user   = "ubuntu"
@@ -81,7 +92,13 @@ connection {
     host = self.public_ip
 }
 
-
+// to have different region for different resource
+provider "aws" {
+  alias  = west
+  region = "us-west-2"
+}
+this is non default provider region, to use this provider region in the resource block:
+provider = { aws = aws.west }
 
 
 
