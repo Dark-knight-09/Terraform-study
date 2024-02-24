@@ -21,7 +21,7 @@ steps to run .tf file:
 4. provider: it is used to define the provider and its configuration.
 5. variable: it is used to define the variable and its type.(can be overriden by different methods)
 6. locals: it is used to define the local variable in the terraform file. (can't be overriden)
-7. module:
+7. module: it is used to call the module(terraform code) from the different directory. // reusability of code
 8. terraform: it is used to define the terraform version and its provider configuration.
 9. provider: it is used to define the provider and its configuration like access key or tokens.
 10. Dynamic: it is used inside the resource block to create multiple resources with different configuration.
