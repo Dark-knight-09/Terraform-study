@@ -55,6 +55,16 @@ resource "aws_instance" "example" {
     }
 }
 
+resource "aws_DynamoDB_table" "example" {
+    name = "example"
+    billing_mode = "PROVISIONED"
+    lifecycle {
+        ignore_changes = [tags]
+        create_before_destroy = true
+        prevent_destroy = false
+    }
+}
+
 
 // For_each
 resource "aws_subnet" "example"{
