@@ -37,6 +37,14 @@ output "ami_id" {
     value = data.aws_ami.example.id
 }
 
+locals {
+    subnet_count = 2
+    common_tags = {
+        Owner = "DevOps Team"
+        Environment = "Dev"
+    }
+}
+
 // Count 
 resource "aws_instance" "example" {
     count= 3

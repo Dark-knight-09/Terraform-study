@@ -100,5 +100,12 @@ provider "aws" {
 this is non default provider region, to use this provider region in the resource block:
 provider = { aws = aws.west }
 
-
+to store the state file in the shared location (like s3 bucket):
+terraform{
+    backend "s3"{
+        bucket = "bucket-name"
+        key = "path/to/store/terraform.tfstate"
+        region = "us-west-2"
+    }
+}
 
