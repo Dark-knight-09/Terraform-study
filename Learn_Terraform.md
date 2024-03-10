@@ -34,7 +34,7 @@ steps to run .tf file:
 - terraform validate:  validate the syntax of .tf file or debugger
 - terraform fmt : make .tf file prettier
 - terraform show : shows current state of terraform in the directory
-- terraform  providers: shows the provider used in .tf file
+- terraform providers: shows the provider used in .tf file
 - terraform output  <variable name> : prints all output variable or specified  output <variable name>.
 - terraform refresh : updates the .tf according to infrastructure.
 - terraform destory: destories all the resource created using current terraform file.[ be carefull ]
@@ -109,3 +109,6 @@ terraform{
     }
 }
 
+# terraform cloud:
+- Terraform Cloud is a SaaS service, which runs terraform cli in remote servers rather than local machine. the terraform state-file is stored in cloud.this is used for collaboration and maintaining the latest code among the team members.
+- it can be coupled with code repositories like github for CI/CD pipeline.

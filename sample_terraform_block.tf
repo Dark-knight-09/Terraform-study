@@ -151,7 +151,7 @@ resource "aws_key_pair" "example" {
 }
 
 
-//modeule block
+//modules block
 module "vpc" {
     source = "terraform-aws-modules/vpc/aws"
     version = "2.66.0"
