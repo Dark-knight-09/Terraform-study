@@ -110,5 +110,5 @@ terraform{
 }
 
 # terraform cloud:
-- Terraform Cloud is a SaaS service, which runs terraform cli in remote servers rather than local machine. the terraform state-file is stored in cloud.this is used for collaboration and maintaining the latest code among the team members.
-- it can be coupled with code repositories like github for CI/CD pipeline.
+- Terraform Cloud is a SaaS service, which runs terraform cli in remote servers rather than local machine. by storing terraform state-file in cloud. it allows for collaboration and maintaining the latest code among the team members.
+- it can be coupled with code repositories like github for CI/CD pipeline and automate deployments.
