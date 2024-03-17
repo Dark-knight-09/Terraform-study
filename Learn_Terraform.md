@@ -5,6 +5,7 @@
 - Terraform uses HCL language(HashiCorp Configuration Language)
 - Terraform doesn't work on a per-file basis, but rather on a per-directory basis. The `terraform init` command is used to initialize a working directory containing Terraform configuration files. It doesn't target a specific file but prepares the whole directory for other operations.
 
+
 Basic:
 
 steps to run .tf file:
@@ -39,6 +40,7 @@ steps to run .tf file:
 - terraform refresh : updates the .tf according to infrastructure.
 - terraform destory: destories all the resource created using current terraform file.[ be carefull ]
 - terraform workspace: used to create, delete, list, select the workspace.
+- terraform init: initialize the terraform config file in the directory
 
 
 # meta-arguments in terraform:
@@ -112,3 +114,4 @@ terraform{
 # terraform cloud:
 - Terraform Cloud is a SaaS service, which runs terraform cli in remote servers rather than local machine. by storing terraform state-file in cloud. it allows for collaboration and maintaining the latest code among the team members.
 - it can be coupled with code repositories like github for CI/CD pipeline and automate deployments.
+
